@@ -1,6 +1,13 @@
 #include <iostream>
+#include "Playlist.h"
+using namespace std;
 
 int main() {
-    std::cout << "Hello, World!" << std::endl;
-    return 0;
+
+    Playlist *pl = new Playlist();
+
+    pl->addSongToEnd("Espresso", "Sabrina Carpenter");
+
+    pl->displayList();
+
 }

@@ -87,5 +87,41 @@ void Playlist::insertAtPosition(string t, string a, int index) {
 
 
     }
-    count ++;
+    count++;
+}
+
+void Playlist::removeByTitle(string title) {
+
+    if(isEmpty()) {
+        cout << "Empty list." << endl;
+    } else {
+
+        Node *nodePtr = head;
+        Node *temp = nullptr;
+
+        while (nodePtr->next && nodePtr->next->value.getTitle() != title)
+            nodePtr = nodePtr->next;
+
+        temp = nodePtr->next;
+        nodePtr->next = nodePtr->next->next;
+        temp = nullptr;
+
+    }
+    count--;
+}
+
+
+void Playlist::displayList() {
+
+    if(isEmpty()) {
+        cout << "Empty list." << endl;
+    } else {
+        Node *nodePtr = head;
+        while(nodePtr != nullptr) {
+            cout << "Title: " << nodePtr->value.getTitle() << "\n" << "Artist: " << nodePtr->value.getArtist() << endl;
+            nodePtr = nodePtr->next;
+        }
+        cout << "\n";
+    }
+
 }
