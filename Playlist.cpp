@@ -54,3 +54,39 @@ void Playlist::addSongToStart(string t, string a) {
     }
     count++;
 }
+
+void Playlist::insertAtPosition(string t, string a, int index) {
+
+    if (index <= 0 || index > size()) {
+        cout << "Invalid index." << endl;
+    } else {
+
+        // Create song object
+        Song newSong(t, a);
+
+        Node *newNode;
+        Node *nodePtr;
+        int pos = 1;
+
+        newNode = new Node(newSong);
+
+        if(isEmpty()) {
+            addSongToStart(t, a);
+        } else {
+            nodePtr = head;
+            while(nodePtr->next &&  pos < index) {
+                nodePtr = nodePtr->next;
+                pos++;
+            }
+            newNode->next = nodePtr->next;
+            nodePtr->next = newNode;
+        }
+
+        count++;
+
+    }
+
+
+
+
+}
