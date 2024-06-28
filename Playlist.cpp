@@ -56,39 +56,33 @@ void Playlist::addSongToStart(string t, string a) {
 }
 
 void Playlist::insertAtPosition(string t, string a, int index) {
-
-    if (index <= 0 || index > size()) {
+    if (index < 1 || index > size() + 1) {
         cout << "Invalid index." << endl;
-    } else {
-
-        // Create song object
-        Song newSong(t, a);
-
-        Node *newNode;
-        Node *nodePtr;
-        int pos = 1;
-
-        newNode = new Node(newSong);
-
-        if(isEmpty()) {
-            addSongToStart(t, a);
-        } else {
-
-            nodePtr = head;
-            while(nodePtr->next &&  pos < index) {
-                nodePtr = nodePtr->next;
-                pos++;
-            }
-
-            newNode->next = nodePtr->next;
-            nodePtr->next = newNode;
-        }
-
-
-
+        return;
     }
+
+    // Create song object
+    Song newSong(t, a);
+    Node* newNode = new Node(newSong);
+
+    if (index == 1) {
+        // Insert at the head
+        newNode->next = head;
+        head = newNode;
+    } else {
+        Node* nodePtr = head;
+        for (int pos = 1; pos < index - 1; pos++) {
+            if (nodePtr->next == nullptr)
+                break;
+            nodePtr = nodePtr->next;
+        }
+        newNode->next = nodePtr->next;
+        nodePtr->next = newNode;
+    }
+
     count++;
 }
+
 
 void Playlist::removeByTitle(string title) {
 
@@ -118,7 +112,7 @@ void Playlist::displayList() {
     } else {
         Node *nodePtr = head;
         while(nodePtr != nullptr) {
-            cout << "Title: " << nodePtr->value.getTitle() << "\n" << "Artist: " << nodePtr->value.getArtist() << endl;
+            cout << "\nTitle: " << nodePtr->value.getTitle() << "\n" << "Artist: " << nodePtr->value.getArtist() << endl;
             nodePtr = nodePtr->next;
         }
         cout << "\n";
