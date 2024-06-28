@@ -14,7 +14,11 @@ int main() {
 
     pl->displayList();
 
-    pl->removeByTitle("Cruel Summer");
+   // pl->removeByTitle("Cruel Summer");
+
+   // pl->displayList();
+
+    *pl = pl->reversePlayList();
 
     pl->displayList();
 

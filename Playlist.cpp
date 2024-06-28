@@ -111,11 +111,28 @@ void Playlist::displayList() {
         cout << "Empty list." << endl;
     } else {
         Node *nodePtr = head;
+        int number = 1;
         while(nodePtr != nullptr) {
-            cout << "\nTitle: " << nodePtr->value.getTitle() << "\n" << "Artist: " << nodePtr->value.getArtist() << endl;
+            cout << "\n" << number << ".Title: " << nodePtr->value.getTitle() << "\n" << "  Artist: " << nodePtr->value.getArtist() << endl;
             nodePtr = nodePtr->next;
+            number++;
         }
         cout << "\n";
     }
+
+}
+
+
+Playlist Playlist::reversePlayList() {
+
+    Playlist *reverse = new Playlist();
+
+    Node *nodePtr = head;
+    while(nodePtr) {
+        reverse->addSongToStart(nodePtr->value.getTitle(), nodePtr->value.getArtist());
+        nodePtr = nodePtr->next;
+    }
+
+    return *reverse;
 
 }
