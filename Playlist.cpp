@@ -73,20 +73,19 @@ void Playlist::insertAtPosition(string t, string a, int index) {
         if(isEmpty()) {
             addSongToStart(t, a);
         } else {
+
             nodePtr = head;
             while(nodePtr->next &&  pos < index) {
                 nodePtr = nodePtr->next;
                 pos++;
             }
+
             newNode->next = nodePtr->next;
             nodePtr->next = newNode;
         }
 
-        count++;
+
 
     }
-
-
-
-
+    count ++;
 }
