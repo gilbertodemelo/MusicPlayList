@@ -15,8 +15,12 @@ class Playlist {
 private:
 
     class Node {
+
+    public:
         Song value;
         Node *next;
+
+        Node(Song v) : value(v), next(NULL) {}
     };
 
     Node *head;
@@ -26,7 +30,11 @@ private:
 public:
 
     // Constructor
-    Playlist() { }
+    Playlist() {
+        head = nullptr;
+        tail = nullptr;
+        count = 0;
+    }
 
     // Methods
     int size();
